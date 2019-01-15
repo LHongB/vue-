@@ -21,12 +21,50 @@
 		</div>
 	</div> -->
   <input type="text" v-focus> 
+	<div id="box">
+    <div v-drag class="box" v-text="name"></div>
+	</div>
   </div>
 </template>
 
 <script>
-  import  '@/utils/js-pluggs-master/custom-bar/custom-bar.js'
+	import  '@/utils/js-pluggs-master/custom-bar/custom-bar.js'
+	import focus from '@/directive/focus/index.js'
   export default {
+    directives:{
+			focus,
+			// 自定义指令的名字
+			drag:{
+				// 钩子函数，被绑定元素插入父节点时调用（父节点存在即可调用，不必存在document中）。
+			inserted(el){ //钩子函数-//当被绑定的元素插入到DOM中时。。。。
+					let elem = el; //el 触发的DOM元素
+					console.log(elem);
+					elem.onmousedown = function(e){
+						let l = e.clientX - elem.offsetLeft;
+						let t = e.clientY - elem.offsetTop;
+						document.onmousemove = (e)=>{
+							console.log(e);
+												elem.style.left = e.clientX - l + 'px';
+					elem.style.top = e.clientY - t + 'px';
+						};
+						elem.onmouseup = ()=>{
+					document.onmousemove = null;
+					elem.onmouseup = null;
+						}
+					}
+			}	
+			}
+			// focus:{
+			// inserted(el){
+      //   el.focus()
+      // }
+			// },
+		},
+		data() {
+			return {
+				name:'drag'
+			}
+		},
     mounted(){
       console.log('全局定义的资源');
       // vue的原型输出
@@ -131,5 +169,15 @@
 			border-radius: 6px;
 			background: linear-gradient(pink, red);
 			cursor: default;
-		}  
+}  
+
+.box{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left: 0;
+	top: 0;
+}   
+    
 </style>

@@ -8,11 +8,11 @@ const MyPlugin = {
         alert('弹出框');
       }, 
     } 
-    Vue.directive('focus',{
-      inserted:function(el){
-        el.focus()
-      }
-    })
+    // Vue.directive('focus',{
+    //   // inserted:function(el){
+    //   //   el.focus()
+    //   // }
+    // })
   }
 }
 

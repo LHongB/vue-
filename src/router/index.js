@@ -9,6 +9,9 @@ Vue.use(Router)
 /* Layout */
 import Layout from '../views/layout/Layout'
 
+/* Router Modules */
+import componentsRouter from './modules/components'
+import vueRouter from './modules/vue'
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -36,22 +39,8 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-  {
-   path:'/vue',
-   component:Layout,
-   redirect:'/vue/module',
-   name:'Vue',
-   meta:{title:'Vue',ivon:'example'},
-   children:[
-     {
-       path:'module',
-       name:'module',
-       component:() => import('@/views/vue/module/index'),
-       meta:{title:'module',icon: 'table'}
-     }
-   ]
-
-  },
+  vueRouter,
+  componentsRouter,
   {
     path: '/example',
     component: Layout,

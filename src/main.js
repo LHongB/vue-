@@ -14,7 +14,7 @@ import router from './router'
 import store from './store'
 
 import '@/icons' // icon
-import '@/permission' // permission control
+// import '@/permission' // permission control
 import MyPlugin from './config/MyPlugin'
 
 Vue.use(ElementUI, { locale })
